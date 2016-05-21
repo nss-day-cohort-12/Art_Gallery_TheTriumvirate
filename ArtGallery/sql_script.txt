@@ -1,0 +1,215 @@
+CREATE TABLE [dbo].[Artist] (
+    [ArtistId]  SMALLINT     IDENTITY (100, 1) NOT NULL,
+    [Name]      VARCHAR (65) NOT NULL,
+    [BirthYear] SMALLINT     NULL,
+    [DeathYear] SMALLINT     NULL,
+    CONSTRAINT [PK_Artist] PRIMARY KEY CLUSTERED ([ArtistId] ASC)
+);
+
+CREATE TABLE [dbo].[Agent] (
+    [AgentId]   SMALLINT     IDENTITY (50, 1) NOT NULL,
+    [FirstName] VARCHAR (25) NULL,
+    [LastName]  VARCHAR (35) NULL,
+    [Location]  VARCHAR (40) NULL,
+    [Address]   VARCHAR (80) NULL,
+    [Phone]     VARCHAR (20) NULL,
+    [Active]    BIT          NULL,
+    CONSTRAINT [PK_Agent] PRIMARY KEY CLUSTERED ([AgentId] ASC)
+);
+
+CREATE TABLE [dbo].[Artwork] (
+    [ArtworkId]           SMALLINT     IDENTITY (1000, 1) NOT NULL,
+    [ArtistId]            SMALLINT     NOT NULL,
+    [Title]               VARCHAR (60) NOT NULL,
+    [YearOriginalCreated] SMALLINT     NULL,
+    [Medium]              VARCHAR (60) NULL,
+    [Dimensions]          VARCHAR (60) NULL,
+    [NumberMade]          SMALLINT     NULL,
+    [NumberInInventory]   SMALLINT     NOT NULL,
+    [NumberSold]          SMALLINT     NOT NULL,
+    CONSTRAINT [PK_Artwork] PRIMARY KEY CLUSTERED ([ArtworkId] ASC)
+);
+
+CREATE TABLE [dbo].[Piece] (
+    [PieceId]       SMALLINT       IDENTITY (1, 1) NOT NULL,
+    [ArtworkId]     SMALLINT       NOT NULL,
+    [ImageURL]      VARCHAR (128)  NULL,
+    [DateCreated]   DATETIME       NULL,
+    [Cost]          DECIMAL (8, 2) NULL,
+    [Price]         DECIMAL (8, 2) NULL,
+    [Sold]          BIT            NOT NULL,
+    [Location]      VARCHAR (40)   NULL,
+    [EditionNumber] SMALLINT       NULL,
+    CONSTRAINT [PK_Piece] PRIMARY KEY (PieceId ASC),
+    CONSTRAINT [FK_Piece] FOREIGN KEY ([ArtworkId]) REFERENCES [dbo].[Artwork] ([ArtworkId])
+);
+
+CREATE TABLE [dbo].[ArtShow] (
+    [ArtShowId]    SMALLINT     IDENTITY (1, 1) NOT NULL,
+    [ArtworkId]    SMALLINT     NULL,
+    [ShowLocation] VARCHAR (40) NULL,
+    [Agents]       BIT          NOT NULL,
+    [Overhead]     BIT          NOT NULL,
+    CONSTRAINT [FK_ArtShow] FOREIGN KEY ([ArtworkId]) REFERENCES [dbo].[Artwork] ([ArtworkId])
+);
+
+CREATE TABLE [dbo].[Customer] (
+    [CustomerId] SMALLINT     IDENTITY (500, 1) NOT NULL,
+    [AgentId]    SMALLINT     NULL,
+    [FirstName]  VARCHAR (25) NULL,
+    [LastName]   VARCHAR (35) NULL,
+    [Location]   VARCHAR (40) NULL,
+    [Address]    VARCHAR (80) NULL,
+    [Phone]      VARCHAR (20) NULL,
+    CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED ([CustomerId] ASC),
+    CONSTRAINT [FK_Customer] FOREIGN KEY ([AgentId]) REFERENCES [dbo].[Agent] ([AgentId])
+);
+
+create table Invoice
+(
+InvoiceId smallint identity(10000,1) not null,
+CustomerId smallint not null,
+AgentId smallint,
+PaymentMethod varchar(15),
+ShippingAddress varchar(80),
+PieceId smallint not null
+CONSTRAINT PK_Invoice PRIMARY KEY CLUSTERED (InvoiceId ASC),
+CONSTRAINT FK_Invoice1 FOREIGN KEY (AgentId) REFERENCES Agent (AgentId)
+);
+
+
+SET IDENTITY_INSERT [dbo].[Artist] ON
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (100, N'Alex Andreev', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (101, N'Andrea Epstein', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (102, N'Anthony Christopher', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (103, N'Art Grafts', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (104, N'Autumn Rose', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (105, N'Beat Hauser', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (106, N'Brian Harig', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (107, N'Chelsea Beery', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (108, N'Clemence Dubois', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (109, N'David Ballinger', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (110, N'David Rickert', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (111, N'Doug Lawler', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (112, N'Drew McSherry', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (113, N'Elizabeth Elkin', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (114, N'Freja Erixan', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (115, N'Heather Patterson', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (116, N'James Rees', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (117, N'jennifer Ross', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (118, N'Jessica JH Roller', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (119, N'Jonathan Cole', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (120, N'Karin Bruckner', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (121, N'Kristine Mays', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (122, N'Lanie Widmar', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (123, N'Laura Kaardal', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (124, N'Lucinda Shmulsky', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (125, N'Lynn Pollard', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (126, N'Matthew Dibble', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (127, N'Melanie Duault', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (128, N'Nanci Erskine', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (129, N'Nancy Graham', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (130, N'Nancy Muren', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (131, N'Naoko Paluszk', 1957, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (132, N'Orlando Dominguez', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (133, N'Sandi Miot', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (134, N'Stephan Venekas', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (135, N'Suren Nersisyan', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (136, N'Susa Dosa', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (137, N'Susan Boyle', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (138, N'Teri Muse', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (139, N'Tom Miller', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (140, N'Tomo Mori', NULL, NULL)
+INSERT INTO [dbo].[Artist] ([ArtistId], [Name], [BirthYear], [DeathYear]) VALUES (141, N'Yelitza Diaz', NULL, NULL)
+SET IDENTITY_INSERT [dbo].[Artist] OFF
+
+SET IDENTITY_INSERT [dbo].[Artwork] ON
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1053, 100, N'Pilots ', 2015, N'Digital Print on unstretched canvas', N'28"h x 46"w', 50, 4, 2)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1054, 100, N'Vesper', 2015, N'Digital Print on unstretched canvas', N'37"x28"', 50, 3, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1055, 100, N'Under the Rain', 2010, N'Digital Print on unstretched canvas', N'26.3"x19.7"', 50, 4, 3)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1056, 101, N'Mountian Dance', 2015, N'Printmakeing on paper', N'26"x40"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1057, 102, N'Nightmare Squid', 2015, N'Ink artwork on Paper', N'12"x9"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1058, 103, N'Disneyland', 2015, N'Digital Printmaking on metal', N'40"x40"', 4, 2, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1059, 103, N'Fish Can''t', 2011, N'Digital Printmaking on metal', N'34"x48"x25"', 4, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1060, 104, N'Watermelon Outlook', 2015, N'Mixed media astwork on strectched canvas', N'12"x16"x1"', 1, 0, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1061, 105, N'Mute Piano', 2011, N'Fine Art Print', N'10"x15"', -1, 11, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1062, 106, N'Phantom Island Sunset - Crater Lake National Park Oregon', 2012, N'Fine Art Print', N'10"x15"', -1, 3, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1063, 107, N'Red Ram', 2012, N'Fine Art Print', N'16'' x 24"', -1, 5, 3)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1064, 108, N'The Ladies Room', 2016, N'Oil painting on stretched canvas', N'20"x24"x8"', 1, 0, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1065, 109, N'Heagon-Greyscale', 2013, N'papercut Artwork', N'16"x22"x1"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1066, 110, N'Path to the Lake', 2015, N'Oil painting on canvas board', N'11"x14"x25"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1067, 111, N'Big Dog', 2004, N'Printmakeing on paper', N'12"x4"', 75, 5, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1068, 111, N'The Peacock', 2015, N'Pastel on wood', N'26"x24"x2"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1069, 112, N'The Amputee', 2015, N'Charcoal drawing on paper', N'25"h x 19"w', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1070, 112, N'Death''s Head', 2015, N'Charcoal drawing on paper', N'25"x19"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1071, 113, N'Bruges Street View', 2014, N'Oil painting on stretched canvas', N'24"x18"x1.5"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1072, 114, N'Birds', 2015, N'Digital Printmaking on paper', N'20"x28"x1"', -1, 3, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1073, 115, N'Luz', 2014, N'Sculpture on Wood', N'23.5" x 16"x 3"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1074, 116, N'Vessel #2', 2015, N'Printmakeing on paper', N'33"x22"x25"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1075, 116, N'Planted Seed', 2015, N'Printmakeing on paper', N'22"x30"x25"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1076, 117, N'Hope is a Thing With Feathers', 2016, N'Acrylic painting on stretched canvas', N'12"x12"x1.5"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1077, 118, N'Dalmation on Red', 2015, N'Acrylic painting on stretched canvas', N'20"x20"x1.5"', 1, 0, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1078, 119, N'Hanuman', 2013, N'Pastel artwork on paper', N'59.5"x42''"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1079, 120, N'IsItABird?', 2013, N'Printmakeing on paper', N'22.5"x22.5"', 1, 0, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1080, 121, N'Heart of Gold', 2013, N'Sculpture on Metal', N'19"x19"x12"', 1, 0, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1081, 122, N'Tumacacori Mission', 2015, N'Watercolor Painting on Paper', N'16"x20"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1082, 123, N'La Rosace, Paris', 2014, N'Colored Pencil on paper', N'10"x8"x4"', 1, 0, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1083, 124, N'Bootleg', 2016, N'Sculpture on Wood', N'33"x31"21"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1084, 125, N'Indigo 4897', 2013, N'Other Meida on Paper', N'22" x 30" x 1"', 1, 0, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1085, 126, N'Misters Teeth Chattered', 2013, N'Ink artwork on Paper', N'12.5" x 15"', 1, 0, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1086, 127, N'Lost My Head 3/6', 2014, N'Fine Art Print', N'10"x15"', -1, 9, 6)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1087, 128, N'Winter Field II', 2015, N'Oil painting on stretched canvas', N'18"x18"x1.3"', 1, 0, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1088, 129, N'My Daisies', 2014, N'Watercolor Painting on Paper', N'15"x20"', 1, 0, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1089, 130, N'Layers of Landscape', 2015, N'Watercolor Painting on Paper', N'15"x23"x3"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1090, 131, N'Who Are These Angels XCI ', 2016, N'Oil painting on stretched canvas', N'18" h x 18" w x 1.5" d', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1091, 132, N'Tittibhasana(Firefly Pose)', 2009, N'Suplture on Metal', N'11.5"x10"x10"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1092, 133, N'Enigma', 2015, N'Encaustic Artwork on Wook', N'6" x 6" x 1.5"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1093, 133, N'What Lies Beneath VI', 2016, N'Encaustic Artwork on Wook', N'6"h x 6"w x 2"d', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1094, 134, N'Red  ', 2014, N'Digital Printmaking on metal', N'32"x32"1.4"', 5, 2, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1095, 135, N'Under Palm Trees (Ultramarine Blue Shades)', 2016, N'Watercolor Painting on Paper', N'18"x24"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1096, 136, N'Portrait in Green', 2015, N'Fine Art Print', N'12"x18"', -1, 17, 4)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1097, 137, N'Love Songs', 2016, N'Mixed Media artwork on paper', N'18"x20.5"', 1, 0, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1098, 138, N'Yellow Field with Mese', 2015, N'Encaustic Artwork on Wook', N'42"h 48"w x 1.5"d', 1, 0, 1)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1099, 139, N'Airmail', 2016, N'Acrylic painting on paper', N'12"x16"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1100, 140, N'Memory Ring (mini)', 2015, N'Mixed media artwork on canvas board', N'14"x11"x1"', 1, 1, 0)
+INSERT INTO [dbo].[Artwork] ([ArtworkId], [ArtistId], [Title], [YearOriginalCreated], [Medium], [Dimensions], [NumberMade], [NumberInInventory], [NumberSold]) VALUES (1101, 141, N'U-35 Window Love I', 2016, N'Sculpture on Ceramic', N'10"x8"x4"', 1, 1, 0)
+SET IDENTITY_INSERT [dbo].[Artwork] OFF
+
+SET IDENTITY_INSERT [dbo].[Agent] ON
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (50, N'Penguin', NULL, NULL, NULL, NULL, NULL)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (51, N'The Joker', NULL, NULL, NULL, NULL, NULL)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (52, N'Batroc', NULL, NULL, NULL, NULL, NULL)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (53, N'Golden Eagle', NULL, NULL, NULL, NULL, NULL)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (54, N'Sinestro', NULL, NULL, NULL, NULL, NULL)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (55, N'Sandman', NULL, NULL, NULL, NULL, NULL)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (56, N'Bizarro', NULL, NULL, NULL, NULL, NULL)
+SET IDENTITY_INSERT [dbo].[Agent] OFF
+
+SET IDENTITY_INSERT [dbo].[Invoice] ON
+INSERT INTO [dbo].[Invoice] ([InvoiceId], [CustomerId], [AgentId], [PaymentMethod], [ShippingAddress], [PieceId]) VALUES (10005, 500, 50, N'Credit Card', N'Apt. 3, Gotham City', 1)
+INSERT INTO [dbo].[Invoice] ([InvoiceId], [CustomerId], [AgentId], [PaymentMethod], [ShippingAddress], [PieceId]) VALUES (10006, 501, 50, N'Cash', N'Wayne Manor Gotham City', 2)
+INSERT INTO [dbo].[Invoice] ([InvoiceId], [CustomerId], [AgentId], [PaymentMethod], [ShippingAddress], [PieceId]) VALUES (10007, 502, 51, N'Cash', N'Wayne Manor Gotham City', 3)
+INSERT INTO [dbo].[Invoice] ([InvoiceId], [CustomerId], [AgentId], [PaymentMethod], [ShippingAddress], [PieceId]) VALUES (10008, 503, 52, N'Credit Card', N'Lower East Side Manhattan, New York City, NY', 4)
+INSERT INTO [dbo].[Invoice] ([InvoiceId], [CustomerId], [AgentId], [PaymentMethod], [ShippingAddress], [PieceId]) VALUES (10009, 504, 50, N'PayPal', N'123 Hiddout St, Gotham City', 5)
+INSERT INTO [dbo].[Invoice] ([InvoiceId], [CustomerId], [AgentId], [PaymentMethod], [ShippingAddress], [PieceId]) VALUES (10010, 505, 53, N'Check', N'4522 S. 9th St, Hall, VA', 6)
+INSERT INTO [dbo].[Invoice] ([InvoiceId], [CustomerId], [AgentId], [PaymentMethod], [ShippingAddress], [PieceId]) VALUES (10011, 506, 54, N'Cash', N'1098 Out of this world', 7)
+INSERT INTO [dbo].[Invoice] ([InvoiceId], [CustomerId], [AgentId], [PaymentMethod], [ShippingAddress], [PieceId]) VALUES (10012, 507, 55, N'PayPal', N'5521 N. Spider Ln, Forest Hills, NY', 8)
+INSERT INTO [dbo].[Invoice] ([InvoiceId], [CustomerId], [AgentId], [PaymentMethod], [ShippingAddress], [PieceId]) VALUES (10013, 508, 56, N'Check', N'22 Super St, Metropolis, MN', 9)
+INSERT INTO [dbo].[Invoice] ([InvoiceId], [CustomerId], [AgentId], [PaymentMethod], [ShippingAddress], [PieceId]) VALUES (10014, 509, 53, N'Credit Card', N'33 Small Ave, Starling City', 10)
+INSERT INTO [dbo].[Invoice] ([InvoiceId], [CustomerId], [AgentId], [PaymentMethod], [ShippingAddress], [PieceId]) VALUES (10015, 501, 50, N'Cash', N'Wayne Manor Gotham City', 11)
+INSERT INTO [dbo].[Invoice] ([InvoiceId], [CustomerId], [AgentId], [PaymentMethod], [ShippingAddress], [PieceId]) VALUES (10016, 506, 54, N'PayPal', N'1098 Out of this world', 12)
+SET IDENTITY_INSERT [dbo].[Invoice] OFF
+
+SET IDENTITY_INSERT [dbo].[Customer] ON
+INSERT INTO [dbo].[Customer] ([CustomerId], [AgentId], [FirstName], [LastName], [Location], [Address], [Phone]) VALUES (500, 50, N'Barbara', N'Gordon', N'', N'Apt. 3, Gotham City', N'555-555-1234')
+INSERT INTO [dbo].[Customer] ([CustomerId], [AgentId], [FirstName], [LastName], [Location], [Address], [Phone]) VALUES (501, 50, N'Bruce', N'Wayne', N'', N'Wayne Manor Gotham City', N'228-555-2281')
+INSERT INTO [dbo].[Customer] ([CustomerId], [AgentId], [FirstName], [LastName], [Location], [Address], [Phone]) VALUES (502, 51, N'Dick', N'Grayson', N'', N'Wayne Manor Gotham City', N'228-555-2281')
+INSERT INTO [dbo].[Customer] ([CustomerId], [AgentId], [FirstName], [LastName], [Location], [Address], [Phone]) VALUES (503, 52, N'Steven', N'Rogers', N'', N'Lower East Side Manhattan, New York City, NY', N'227-555-6263')
+INSERT INTO [dbo].[Customer] ([CustomerId], [AgentId], [FirstName], [LastName], [Location], [Address], [Phone]) VALUES (504, 50, N'Selina', N'Kyle', N'', N'123 Hiddout St, Gotham City', N'228-555-2288')
+INSERT INTO [dbo].[Customer] ([CustomerId], [AgentId], [FirstName], [LastName], [Location], [Address], [Phone]) VALUES (505, 53, N'Carter', N'Hall', N'', N'4522 S. 9th St, Hall, VA', N'429-555-5626')
+INSERT INTO [dbo].[Customer] ([CustomerId], [AgentId], [FirstName], [LastName], [Location], [Address], [Phone]) VALUES (506, 54, N'Hal', N'Jordan', N'', N'1098 Out of this world', N'473-555-3652')
+INSERT INTO [dbo].[Customer] ([CustomerId], [AgentId], [FirstName], [LastName], [Location], [Address], [Phone]) VALUES (507, 55, N'Peter', N'Parker', N'', N'5521 N. Spider Ln, Forest Hills, NY', N'774-555-3377')
+INSERT INTO [dbo].[Customer] ([CustomerId], [AgentId], [FirstName], [LastName], [Location], [Address], [Phone]) VALUES (508, 56, N'Clark', N'Kent', N'', N'22 Super St, Metropolis, MN', N'787-555-6762')
+INSERT INTO [dbo].[Customer] ([CustomerId], [AgentId], [FirstName], [LastName], [Location], [Address], [Phone]) VALUES (509, 53, N'Ray', N'Palmer', N'', N'33 Small Ave, Starling City', N'843-555-2866')
+SET IDENTITY_INSERT [dbo].[Customer] OFF
+
