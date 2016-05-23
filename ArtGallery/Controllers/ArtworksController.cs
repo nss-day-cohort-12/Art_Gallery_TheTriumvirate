@@ -17,14 +17,27 @@ namespace ArtGallery.Controllers
         // GET: Artworks
         public ActionResult Index()
         {
-            var q = (from a in db.Artworks
-                     join ar in db.Artists
-                     on a.ArtistId equals ar.ArtistId
-                     orderby a.ArtistId
-                     where a.NumberInInventory > 4
-                     select a).ToList();
+            var r = (from foo in db.Artworks
+                     select foo);
 
-            return View(q);
+            var q = (from aws in db.Artworks
+                     join ar in db.Artists on aws.ArtistId equals ar.ArtistId
+                     join p in db.Pieces on aws.ArtworkId equals p.ArtworkId
+                     where aws.NumberInInventory > 1
+                     select new { aws.Title, aws.NumberInInventory, ar.Name, p.ImageURL, aws.Category, aws.Medium, aws.ArtworkId });
+
+            var qq = q.AsEnumerable().Select(xx => new ArtworkArtistPieceViewModel
+            {
+                Title = xx.Title,
+                NumberInInventory = xx.NumberInInventory,
+                Name = xx.Name,
+                ImageURL = xx.ImageURL,
+                Category = xx.Category,
+                Medium = xx.Medium,
+                ArtworkId = xx.ArtworkId
+            }).ToList();
+
+            return View(qq);
 
             //return View(db.Artworks.Where(a => a.NumberInInventory > 0).ToList());
         }

@@ -10,6 +10,8 @@ namespace ArtGallery.Models
     {
         public DbSet<Artwork> Artworks { get; set; }
         public DbSet<Artist> Artists { get; set; }
+        public DbSet<Piece> Pieces { get; set; }
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -20,6 +22,10 @@ namespace ArtGallery.Models
             modelBuilder.Entity<Artist>()
                 .ToTable("Artist")
                 .HasKey(ar => ar.ArtistId);
+
+            modelBuilder.Entity<Piece>()
+                .ToTable("Piece")
+                .HasKey(p => p.PieceId);
         }
     }
 }
