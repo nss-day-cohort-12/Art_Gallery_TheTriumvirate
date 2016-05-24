@@ -1,0 +1,51 @@
+Title	ArtistId	Name	Category	Medium	Dimensions	YearMade	NumberMade	EditionsAcquired	NumberInInventory	NumberSold	Locations	Cost	Price	Image
+Pilots 	100	Alex Andreev	Digital Print	Digital Print on unstretched canvas	"28""h x 46""w"	2015	50	"2,3,45,12,22,17"	4	2	South	$945.00 	"$1,500 "	http://www.ugallery.com/digital-printmaking-pilots
+Vesper	100	Alex Andreev	Digital Print	Digital Print on unstretched canvas	"37""x28"""	2015	50	"19,21,24,49"	3	1	East	$945.00 	"$1,500 "	http://www.ugallery.com/digital-printmaking-vesper
+Under the Rain	100	Alex Andreev	Digital Print	Digital Print on unstretched canvas	"26.3""x19.7"""	2010	50	44-50	4	3	East	$976.50 	"$1,550 "	http://www.ugallery.com/printmaking-digital-under-the-rain
+Mountian Dance	101	Andrea Epstein	Print	Printmakeing on paper	"26""x40"""	2015	1		1	0	North	$425.25 	$675 	http://www.ugallery.com/printmaking-mountain-dance
+Nightmare Squid	102	Anthony Christopher	Drawing	Ink artwork on Paper	"12""x9"""	2015	1		1	0	East	$346.50 	$550 	http://www.ugallery.com/ink-artwork-nightmare-squid
+Disneyland	103	Art Grafts	Digital Print	Digital Printmaking on metal	"40""x40"""	2015	4	"1,2"	2	0	West	"$1,165.50 "	"$1,850 "	http://www.ugallery.com/digital-printmaking-disneyland
+Fish Can't	103	Art Grafts	Digital Print	Digital Printmaking on metal	"34""x48""x25"""	2011	4	3	1	0	West	"$1,039.50 "	"$1,650 "	http://www.ugallery.com/printmaking-digital-fish-can-t
+Watermelon Outlook	104	Autumn Rose	Mixed Media	Mixed media astwork on strectched canvas	"12""x16""x1"""	2015	1		0	1	North	$220.50 	$350 	http://www.ugallery.com/mixed-media-artwork-watermelon-outlook
+Mute Piano	105	Beat Hauser	Photography	Fine Art Print	"10""x15"""	2011	-1	17-119	11	1	West	$78.75 	$125 	http://www.ugallery.com/photography-mute-piano
+Phantom Island Sunset - Crater Lake National Park Oregon	106	Brian Harig	Photography	Fine Art Print	"10""x15"""	2012	-1	7-9	3	0	West	$78.75 	$125 	http://www.ugallery.com/photography-phantom-island-sunset-crater-lake-national-park-oregon
+Red Ram	107	Chelsea Beery	Photography	Fine Art Print	"16' x 24"""	2012	-1		5	3	East	$141.75 	$225 	http://www.ugallery.com/photography-red-ram
+The Ladies Room	108	Clemence Dubois	Oil Painting	Oil painting on stretched canvas	"20""x24""x8"""	2016	1		0	1	North	$645.75 	"$1,025 "	http://www.ugallery.com/oil-painting-the-ladies-room
+Heagon-Greyscale	109	David Ballinger	Other Media	papercut Artwork	"16""x22""x1"""	2013	1		1	0	North	"$1,055.25 "	"$1,675 "	http://www.ugallery.com/other-media-hexagon-greyscale
+Path to the Lake	110	David Rickert	Oil Painting	Oil painting on canvas board	"11""x14""x25"""	2015	1		1	0	North	$378.00 	$600 	http://www.ugallery.com/oil-painting-path-to-the-lake-43295
+Big Dog	111	Doug Lawler	Print	Printmakeing on paper	"12""x4"""	2004	75	23-28	5	1	East	$173.25 	$275 	http://www.ugallery.com/printmaking-big-dog
+The Peacock	111	Doug Lawler	Drawing	Pastel on wood	"26""x24""x2"""	2015	1		1	0	South	"$1,008.00 "	"$1,600 "	http://www.ugallery.com/pastel-artwork-the-peacock
+The Amputee	112	Drew McSherry	Drawing	Charcoal drawing on paper	"25""h x 19""w"	2015	1		1	0	West	$315.00 	$500 	http://www.ugallery.com/charcoal-drawing-the-amputee
+Death's Head	112	Drew McSherry	Drawing	Charcoal drawing on paper	"25""x19"""	2015	1		1	0	North	$252.00 	$400 	http://www.ugallery.com/charcoal-drawing-death-s-head
+Bruges Street View	113	Elizabeth Elkin	Oil Painting	Oil painting on stretched canvas	"24""x18""x1.5"""	2014	1		1	0	South	$929.25 	"$1,475 "	http://www.ugallery.com/oil-painting-bruges-street-view
+Birds	114	Freja Erixan	Digital Print	Digital Printmaking on paper	"20""x28""x1"""	2015	-1	33-36	3	1	North	$315.00 	$500 	http://www.ugallery.com/digital-printmaking-birds
+Luz	115	Heather Patterson	Sculpture	Sculpture on Wood	"23.5"" x 16""x 3"""	2014	1		1	0	West	$551.25 	$875 	http://www.ugallery.com/sculpture-luz
+Vessel #2	116	James Rees	Print	Printmakeing on paper	"33""x22""x25"""	2015	1		1	0	North	$677.25 	"$1,075 "	http://www.ugallery.com/printmaking-vessel-2
+Planted Seed	116	James Rees	Print	Printmakeing on paper	"22""x30""x25"""	2015	1		1	0	West	$661.50 	"$1,050 "	http://www.ugallery.com/printmaking-planted-seed
+Hope is a Thing With Feathers	117	jennifer Ross	Acrylic Painting	Acrylic painting on stretched canvas	"12""x12""x1.5"""	2016	1		1	0	North	$252.00 	$400 	http://www.ugallery.com/acrylic-painting-hope-is-a-thing-with-feathers
+Dalmation on Red	118	Jessica JH Roller	Acrylic Painting	Acrylic painting on stretched canvas	"20""x20""x1.5"""	2015	1		0	1	West	$378.00 	$600 	http://www.ugallery.com/acrylic-painting-dalmatian-on-red
+Hanuman	119	Jonathan Cole	Drawing	Pastel artwork on paper	"59.5""x42'"""	2013	1		1	0	North	$567.00 	$900 	http://www.ugallery.com/pastel-artwork-hanuman
+IsItABird?	120	Karin Bruckner	Print	Printmakeing on paper	"22.5""x22.5"""	2013	1		0	1	West	$346.50 	$550 	http://www.ugallery.com/printmaking-isitabird
+Heart of Gold	121	Kristine Mays	Sculpture	Sculpture on Metal	"19""x19""x12"""	2013	1		0	1	South	$645.75 	"$1,025 "	http://www.ugallery.com/sculpture-heart-of-gold
+Tumacacori Mission	122	Lanie Widmar	Watercolor	Watercolor Painting on Paper	"16""x20"""	2015	1		1	0	East	$299.25 	$475 	http://www.ugallery.com/watercolor-painting-tumacacori-mission
+"La Rosace, Paris"	123	Laura Kaardal	Drawing	Colored Pencil on paper	"10""x8""x4"""	2014	1		0	1	North	$141.75 	$225 	http://www.ugallery.com/colored-pencil-la-rosace-paris
+Bootleg	124	Lucinda Shmulsky	Sculpture	Sculpture on Wood	"33""x31""21"""	2016	1		1	0	South	$913.50 	"$1,450 "	http://www.ugallery.com/sculpture-bootleg
+Indigo 4897	125	Lynn Pollard	Other Media	Other Meida on Paper	"22"" x 30"" x 1"""	2013	1		0	1	North	$567.00 	$900 	http://www.ugallery.com/other-media-indigo-4897
+Misters Teeth Chattered	126	Matthew Dibble	Drawing	Ink artwork on Paper	"12.5"" x 15"""	2013	1		0	1	East	$378.00 	$600 	http://www.ugallery.com/ink-artwork-misters-teeth-chattered
+Lost My Head 3/6	127	Melanie Duault	Photography	Fine Art Print	"10""x15"""	2014	-1	112-127	9	6	West	$78.75 	$125 	http://www.ugallery.com/photography-lost-my-head-3-6
+Winter Field II	128	Nanci Erskine	Oil Painting	Oil painting on stretched canvas	"18""x18""x1.3"""	2015	1		0	1	East	$488.25 	$775 	http://www.ugallery.com/oil-painting-winter-field-ii
+My Daisies	129	Nancy Graham	Watercolor	Watercolor Painting on Paper	"15""x20"""	2014	1		0	1	East	$551.25 	$875 	http://www.ugallery.com/watercolor-painting-my-daisies
+Layers of Landscape	130	Nancy Muren	Watercolor	Watercolor Painting on Paper	"15""x23""x3"""	2015	1		1	0	East	$393.75 	$625 	http://www.ugallery.com/watercolor-painting-layers-of-landscape
+Who Are These Angels XCI 	131	Naoko Paluszk (1957-	Painting	Oil painting on stretched canvas	"18"" h x 18"" w x 1.5"" d"	2016	1	1	1	0	South	$929.25 	"$1,475 "	http://www.ugallery.com/oil-painting-who-are-these-angels-xci
+Tittibhasana(Firefly Pose)	132	Orlando Dominguez	Sculpture	Suplture on Metal	"11.5""x10""x10"""	2009	1		1	0	South	$330.75 	$525 	http://www.ugallery.com/sculpture-tittibhasana-firefly-pose
+Enigma	133	Sandi Miot	Other Media	Encaustic Artwork on Wook	"6"" x 6"" x 1.5"""	2015	1		1	0	South	$220.50 	$350 	http://www.ugallery.com/encaustic-artwork-enigma
+What Lies Beneath VI	133	Sandi Miot	Other Media	Encaustic Artwork on Wook	"6""h x 6""w x 2""d"	2016	1	1	1	0	West	$220.50 	$350 	http://www.ugallery.com/encaustic-artwork-what-lies-beneath-vi
+Red  	134	Stephan Venekas	Digital Print	Digital Printmaking on metal	"32""x32""1.4"""	2014	5	"2,3"	2	0	South	"$1,527.75 "	"$2,425 "	http://www.ugallery.com/other-media-red
+Under Palm Trees (Ultramarine Blue Shades)	135	Suren Nersisyan	Watercolor	Watercolor Painting on Paper	"18""x24"""	2016	1		1	0	West	$283.50 	$450 	http://www.ugallery.com/watercolor-painting-under-palm-trees-ultramarine-blue-shades
+Portrait in Green	136	Susa Dosa	Photography	Fine Art Print	"12""x18"""	2015	-1	12-33	17	4	West	$126.00 	$200 	http://www.ugallery.com/photography-portrait-in-green
+Love Songs	137	Susan Boyle	Mixed Media	Mixed Media artwork on paper	"18""x20.5"""	2016	1		0	1	South	$299.25 	$475 	http://www.ugallery.com/mixed-media-artwork-love-songs
+Yellow Field with Mese	138	Teri Muse	Other Media	Encaustic Artwork on Wook	"42""h 48""w x 1.5""d"	2015	1		0	1	North	"$1,779.75 "	"$2,825 "	http://www.ugallery.com/encaustic-artwork-enigma
+Airmail	139	Tom Miller	Acrylic Painting	Acrylic painting on paper	"12""x16"""	2016	1		1	0	North	$173.25 	$275 	http://www.ugallery.com/acrylic-painting-airmail
+Memory Ring (mini)	140	Tomo Mori	Mixed Media	Mixed media artwork on canvas board	"14""x11""x1"""	2015	1		1	0	South	$378.00 	$600 	http://www.ugallery.com/mixed-media-artwork-memory-ring-mini
+U-35 Window Love I	141	Yelitza Diaz	Sculpture	Sculpture on Ceramic	"10""x8""x4"""	2016	1		1	0	South	$298.62 	$474 	http://www.ugallery.com/sculpture-u-35-window-love-i
+														

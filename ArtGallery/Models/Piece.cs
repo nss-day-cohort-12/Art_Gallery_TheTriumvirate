@@ -10,20 +10,20 @@ namespace ArtGallery.Models
 
     public class Piece
     {
-        public short PieceId { get; set; }
+        public Int16 PieceId { get; set; }
 
-        public short ArtworkId { get; set; }
+        public Int16 ArtworkId { get; set; }
 
         [StringLength(128)]
         public string ImageURL { get; set; }
 
-        public DateTime? DateCreated { get; set; }
+        public string DateCreated { get; set; }
 
-        public decimal? Cost { get; set; }
+        public string Cost { get; set; }
 
-        public decimal? Price { get; set; }
+        public string Price { get; set; }
 
-        public bool Sold { get; set; }
+        public string SoldFor { get; set; }
 
         [StringLength(40)]
         public string Location { get; set; }

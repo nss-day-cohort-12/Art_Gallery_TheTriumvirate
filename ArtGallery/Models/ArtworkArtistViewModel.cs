@@ -10,10 +10,10 @@ namespace ArtGallery.Models
 
         public string Title { get; set; }
 
-        public short NumberInInventory { get; set; }
+        public Int16 NumberInInventory { get; set; }
 
         public string Name { get; set; }
 
-        public short? NumberMade { get; set; }
+        public Int16? NumberMade { get; set; }
     }
 }
