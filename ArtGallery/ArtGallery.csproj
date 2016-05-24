@@ -140,6 +140,7 @@
     <Compile Include="Models\ArtworkArtistPieceViewModel.cs" />
     <Compile Include="Models\ArtworkDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\InventoryDbContext.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\Piece.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -204,6 +205,8 @@
     <Content Include="Views\Artworks\Edit.cshtml" />
     <Content Include="Views\Artworks\Index.cshtml" />
     <Content Include="Views\Artworks\Index - Copy.cshtml" />
+    <Content Include="Views\Artworks\Index - Copy - Copy.cshtml" />
+    <Content Include="Views\Artworks\Inventory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

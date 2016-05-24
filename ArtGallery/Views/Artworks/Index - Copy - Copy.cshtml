@@ -8,60 +8,72 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
-    @Html.ActionLink("Owner: View Inventory", "Owner")
 </p>
-
-<form asp-controller="Artists" asp-action="Index">
-    <p>
-        Artist: @Html.DropDownList("artistString", "All")
-        Medium: @Html.DropDownList("mediumString", "All")
-@*        Title: <input type="text" name="ArtistString">*@
-        <input type="submit" value="Filter" />
-    </p>
-</form>
-
-
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.ArtistId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.YearOriginalCreated)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Medium)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dimensions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberMade)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NumberInInventory)
         </th>
         <th>
-            Image
+            @Html.DisplayNameFor(model => model.NumberSold)
         </th>
         <th></th>
     </tr>
 
+@{ var message = "Open"; }
 @foreach (var item in Model)
 {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.ArtistId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.YearOriginalCreated)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Medium)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dimensions)
+        </td>
+        <td>
+
+            @if (item.NumberMade < 0)
+            {
+                @message
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.NumberMade);
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NumberInInventory)
         </td>
-
         <td>
-            <a>
-                @Html.DisplayFor(modelItem => item.ImageURL)
-            </a>
+            @Html.DisplayFor(modelItem => item.NumberSold)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.ArtworkId }) |
