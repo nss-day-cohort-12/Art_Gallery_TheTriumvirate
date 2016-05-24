@@ -14,7 +14,7 @@ namespace ArtGallery.Models
 
         public string Title { get; set; }
 
-        public Int16? YearOriginalCreated { get; set; }
+        public Int16 YearOriginalCreated { get; set; }
 
         public string Medium { get; set; }
 
@@ -22,7 +22,7 @@ namespace ArtGallery.Models
 
         public string Dimensions { get; set; }
 
-        public Int16? NumberMade { get; set; }
+        public Int16 NumberMade { get; set; }
 
         public Int16 NumberInInventory { get; set; }
 

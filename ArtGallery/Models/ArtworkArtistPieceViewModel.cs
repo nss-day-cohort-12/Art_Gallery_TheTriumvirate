@@ -15,10 +15,18 @@ namespace ArtGallery.Models
 
         public string ImageURL { get; set; }
 
-        public string Category { get; set; }
-
         public string Medium { get; set; }
 
         public short ArtworkId { get; set; }
+
+        public string Category { get; set; }
+
+        public short YearOriginalCreated { get; set; }
+
+        public string Dimensions { get; set; }
+
+        public string Location { get; set; }
+
+        public string Price { get; set; }
     }
 }

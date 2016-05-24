@@ -138,12 +138,9 @@
     <Compile Include="Models\ArtShow.cs" />
     <Compile Include="Models\Artwork.cs" />
     <Compile Include="Models\ArtworkArtistPieceViewModel.cs" />
-    <Compile Include="Models\ArtworkArtistViewModel.cs" />
     <Compile Include="Models\ArtworkDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Invoice.cs" />
-    <Compile Include="Models\Omnibus.cs" />
-    <Compile Include="Models\OmnibusDbContext.cs" />
     <Compile Include="Models\Piece.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />

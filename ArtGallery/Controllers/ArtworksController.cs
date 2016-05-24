@@ -17,16 +17,16 @@ namespace ArtGallery.Controllers
         // GET: Artworks
         public ActionResult Index()
         {
-            var r = (from foo in db.Artworks
-                     select foo);
 
-            var q = (from aws in db.Artworks
+            var q = (from aws in db.Artworkz
                      join ar in db.Artists on aws.ArtistId equals ar.ArtistId
                      join p in db.Pieces on aws.ArtworkId equals p.ArtworkId
-                     where aws.NumberInInventory > 1
-                     select new { aws.Title, aws.NumberInInventory, ar.Name, p.ImageURL, aws.Category, aws.Medium, aws.ArtworkId });
+                     where aws.NumberInInventory > 0
+                     select new { aws.Title, aws.NumberInInventory, ar.Name, p.ImageURL, aws.Category, aws.Medium, aws.ArtworkId,
+                                  aws.Dimensions, p.Location, p.Price});
 
-            var qq = q.AsEnumerable().Select(xx => new ArtworkArtistPieceViewModel
+            // q is assigned type IQueryable<'a> (anonymous)
+            List<ArtworkArtistPieceViewModel> qq = q.AsEnumerable().Select(xx => new ArtworkArtistPieceViewModel  // use this syntax when retrieving > 1 item
             {
                 Title = xx.Title,
                 NumberInInventory = xx.NumberInInventory,
@@ -34,12 +34,13 @@ namespace ArtGallery.Controllers
                 ImageURL = xx.ImageURL,
                 Category = xx.Category,
                 Medium = xx.Medium,
-                ArtworkId = xx.ArtworkId
+                ArtworkId = xx.ArtworkId,
+                Dimensions = xx.Dimensions,
+                Location = xx.Location,
+                Price = xx.Price
             }).ToList();
 
-            return View(qq);
-
-            //return View(db.Artworks.Where(a => a.NumberInInventory > 0).ToList());
+            return View(qq);  // qq is type List<ArtworkArtistPriceViewModel>
         }
 
         // GET: Artworks/Details/5
@@ -49,12 +50,32 @@ namespace ArtGallery.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Artwork artwork = db.Artworks.Find(id);
-            if (artwork == null)
-            {
-                return HttpNotFound();
-            }
-            return View(artwork);
+
+            var q = (from aws in db.Artworkz
+                     join ar in db.Artists on aws.ArtistId equals ar.ArtistId
+                     join p in db.Pieces on aws.ArtworkId equals p.ArtworkId
+                     where aws.ArtworkId == id
+                     select new ArtworkArtistPieceViewModel // this works because we are only retrieving one item
+                     {
+                         Title = aws.Title,
+                         NumberInInventory = aws.NumberInInventory,
+                         Name = ar.Name,
+                         ImageURL = p.ImageURL,
+                         Category = aws.Category,
+                         Medium = aws.Medium,
+                         ArtworkId = aws.ArtworkId,
+                         Dimensions = aws.Dimensions,
+                         Location = p.Location,
+                         Price = p.Price
+                     });
+
+            // ** LINQ always returns a sequence, so you have to retrieve the item out of it. **
+            // There are four LINQ methods to retrieve a single item out of a sequence:
+            // Single() returns the item, throws an exception if there are 0 or more than one item in the sequence.
+            // SingleOrDefault() returns the item, or default value (null for string). Throws if more than one item in the sequence.
+            // First() returns the first item. Throws if there are 0 items in the sequence.
+            // FirstOrDefault() returns the first item, or the default value if there are no items).
+            return View(q.Single());
         }
 
         // GET: Artworks/Create
@@ -72,7 +93,7 @@ namespace ArtGallery.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Artworks.Add(artwork);
+                db.Artworkz.Add(artwork);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -87,7 +108,7 @@ namespace ArtGallery.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Artwork artwork = db.Artworks.Find(id);
+            Artwork artwork = db.Artworkz.Find(id);
             if (artwork == null)
             {
                 return HttpNotFound();
@@ -118,7 +139,7 @@ namespace ArtGallery.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Artwork artwork = db.Artworks.Find(id);
+            Artwork artwork = db.Artworkz.Find(id);
             if (artwork == null)
             {
                 return HttpNotFound();
@@ -131,8 +152,8 @@ namespace ArtGallery.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(short id)
         {
-            Artwork artwork = db.Artworks.Find(id);
-            db.Artworks.Remove(artwork);
+            Artwork artwork = db.Artworkz.Find(id);
+            db.Artworkz.Remove(artwork);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
