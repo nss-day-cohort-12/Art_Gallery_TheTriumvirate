@@ -1,4 +1,4 @@
-﻿@model ArtGallery.Models.Artwork
+﻿@model ArtGallery.Models.ArtworkArtistPieceViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,11 +11,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ArtistId)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ArtistId)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>
@@ -27,11 +27,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.YearOriginalCreated)
+            @Html.DisplayNameFor(model => model.Price)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.YearOriginalCreated)
+            @Html.DisplayFor(model => model.Price)
         </dd>
 
         <dt>
@@ -51,27 +51,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NumberMade)
+            @Html.DisplayNameFor(model => model.Location)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NumberMade)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberInInventory)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumberInInventory)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberSold)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumberSold)
+            @Html.DisplayFor(model => model.Location)
         </dd>
 
     </dl>

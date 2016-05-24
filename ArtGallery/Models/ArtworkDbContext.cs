@@ -8,7 +8,7 @@ namespace ArtGallery.Models
 {
     public class ArtworkDbContext : DbContext
     {
-        public DbSet<Artwork> Artworks { get; set; }
+        public DbSet<Artwork> Artworkz { get; set; }
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Piece> Pieces { get; set; }
         

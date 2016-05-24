@@ -13,7 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ArtworkId)
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -24,19 +24,17 @@
         <th>
             @Html.DisplayNameFor(model => model.NumberInInventory)
         </th>
-
         <th>
-            @Html.DisplayNameFor(model => model.ImageURL)
+            Image
         </th>
         <th></th>
     </tr>
 
-@{ var message = "Open"; }
 @foreach (var item in Model)
 {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ArtworkId)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -49,7 +47,9 @@
         </td>
 
         <td>
-            @Html.DisplayFor(modelItem => item.ImageURL)
+            <a>
+                @Html.DisplayFor(modelItem => item.ImageURL)
+            </a>
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.ArtworkId }) |
