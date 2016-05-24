@@ -15,32 +15,73 @@ namespace ArtGallery.Controllers
         private ArtworkDbContext db = new ArtworkDbContext();
 
         // GET: Artworks
-        public ActionResult Index()
+        public ActionResult Index(string artistString, string mediumString)
         {
+
+            var ArtistQry = from a in db.Artists
+                           orderby a.Name
+                           select a.Name;
+
+            var ArtistList = new List<string>();
+            ArtistList.AddRange(ArtistQry.Distinct());
+            ViewData["artistString"] = new SelectList(ArtistList);
+
+
+
+            var MediumQry = from a in db.Artworkz
+                            orderby a.Title
+                            select a.Medium;
+
+            var MediumList = new List<string>();
+            MediumList.AddRange(MediumQry.Distinct());
+            ViewData["mediumString"] = new SelectList(MediumList);
+
+
 
             var q = (from aws in db.Artworkz
                      join ar in db.Artists on aws.ArtistId equals ar.ArtistId
                      join p in db.Pieces on aws.ArtworkId equals p.ArtworkId
                      where aws.NumberInInventory > 0
-                     select new { aws.Title, aws.NumberInInventory, ar.Name, p.ImageURL, aws.Category, aws.Medium, aws.ArtworkId,
-                                  aws.Dimensions, p.Location, p.Price});
+                     select new ArtworkArtistPieceViewModel
+                     {
+                         Title = aws.Title,
+                         NumberInInventory = aws.NumberInInventory,
+                         Name = ar.Name,
+                         ImageURL = p.ImageURL,
+                         Category = aws.Category,
+                         Medium = aws.Medium,
+                         ArtworkId = aws.ArtworkId,
+                         Dimensions = aws.Dimensions,
+                         Location = p.Location,
+                         Price = p.Price
+                     });
 
             // q is assigned type IQueryable<'a> (anonymous)
-            List<ArtworkArtistPieceViewModel> qq = q.AsEnumerable().Select(xx => new ArtworkArtistPieceViewModel  // use this syntax when retrieving > 1 item
-            {
-                Title = xx.Title,
-                NumberInInventory = xx.NumberInInventory,
-                Name = xx.Name,
-                ImageURL = xx.ImageURL,
-                Category = xx.Category,
-                Medium = xx.Medium,
-                ArtworkId = xx.ArtworkId,
-                Dimensions = xx.Dimensions,
-                Location = xx.Location,
-                Price = xx.Price
-            }).ToList();
+            //var qq = q.AsEnumerable().Select(xx => new ArtworkArtistPieceViewModel  // use this syntax when retrieving > 1 item
+            //{
+            //    Title = xx.Title,
+            //    NumberInInventory = xx.NumberInInventory,
+            //    Name = xx.Name,
+            //    ImageURL = xx.ImageURL,
+            //    Category = xx.Category,
+            //    Medium = xx.Medium,
+            //    ArtworkId = xx.ArtworkId,
+            //    Dimensions = xx.Dimensions,
+            //    Location = xx.Location,
+            //    Price = xx.Price
+            //}).ToList();
 
-            return View(qq);  // qq is type List<ArtworkArtistPriceViewModel>
+            if (!string.IsNullOrEmpty(artistString))
+            {
+                q = q.Where(s => s.Name.Contains(artistString));
+            }
+
+            if (!string.IsNullOrEmpty(mediumString))
+            {
+                q = q.Where(x => x.Medium == mediumString);
+            }
+
+            return View(q);  // qq is type List<ArtworkArtistPriceViewModel>
         }
 
         // GET: Artworks/Details/5

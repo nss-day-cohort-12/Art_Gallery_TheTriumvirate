@@ -10,6 +10,17 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
+<form asp-controller="Artists" asp-action="Index">
+    <p>
+        Artist: @Html.DropDownList("artistString", "All")
+        Medium: @Html.DropDownList("mediumString", "All")
+@*        Title: <input type="text" name="ArtistString">*@
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+
+
 <table class="table">
     <tr>
         <th>
