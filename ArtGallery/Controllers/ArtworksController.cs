@@ -15,7 +15,7 @@ namespace ArtGallery.Controllers
         private ArtworkDbContext db = new ArtworkDbContext();
 
         // GET: Artworks
-        public ActionResult Index(string artistString, string mediumString)
+        public ActionResult Index(string artistString, string mediumString, string categoryString)
         {
 
             var ArtistQry = from a in db.Artists
@@ -36,6 +36,15 @@ namespace ArtGallery.Controllers
             MediumList.AddRange(MediumQry.Distinct());
             ViewData["mediumString"] = new SelectList(MediumList);
 
+
+
+            var CategoryQry = from a in db.Artworkz
+                            orderby a.Category
+                            select a.Category;
+
+            var CategoryList = new List<string>();
+            CategoryList.AddRange(CategoryQry.Distinct());
+            ViewData["categoryString"] = new SelectList(CategoryList);
 
 
             var q = (from aws in db.Artworkz
@@ -79,6 +88,10 @@ namespace ArtGallery.Controllers
             if (!string.IsNullOrEmpty(mediumString))
             {
                 q = q.Where(x => x.Medium == mediumString);
+            }
+            if (!string.IsNullOrEmpty(categoryString))
+            {
+                q = q.Where(x => x.Category == categoryString);
             }
 
             return View(q);  // qq is type List<ArtworkArtistPriceViewModel>
