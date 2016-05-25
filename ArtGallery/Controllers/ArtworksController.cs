@@ -12,7 +12,7 @@ namespace ArtGallery.Controllers
 {
     public class ArtworksController : Controller
     {
-        private ArtworkDbContext db = new ArtworkDbContext();
+        private ArtGalleryDbContext db = new ArtGalleryDbContext();
 
         // GET: Artworks
         public ActionResult Index(string artistString, string mediumString, string categoryString)
@@ -26,8 +26,6 @@ namespace ArtGallery.Controllers
             ArtistList.AddRange(ArtistQry.Distinct());
             ViewData["artistString"] = new SelectList(ArtistList);
 
-
-
             var MediumQry = from a in db.Artworkz
                             orderby a.Title
                             select a.Medium;
@@ -35,7 +33,6 @@ namespace ArtGallery.Controllers
             var MediumList = new List<string>();
             MediumList.AddRange(MediumQry.Distinct());
             ViewData["mediumString"] = new SelectList(MediumList);
-
 
 
             var CategoryQry = from a in db.Artworkz
@@ -94,7 +91,7 @@ namespace ArtGallery.Controllers
                 q = q.Where(x => x.Category == categoryString);
             }
 
-            return View(q);  // qq is type List<ArtworkArtistPriceViewModel>
+            return View(q);  // q is type List<ArtworkArtistPriceViewModel>
         }
 
         // GET: Artworks/Details/5
@@ -130,6 +127,49 @@ namespace ArtGallery.Controllers
             // First() returns the first item. Throws if there are 0 items in the sequence.
             // FirstOrDefault() returns the first item, or the default value if there are no items).
             return View(q.Single());
+        }
+
+        // GET: Artworks/Owner
+        public ActionResult Inventory()
+        {
+            var q = (from aws in db.Artworkz
+                     join ar in db.Artists on aws.ArtistId equals ar.ArtistId
+                     join p in db.Pieces on aws.ArtworkId equals p.ArtworkId
+                     where aws.NumberInInventory > 0
+                     select new ArtworkArtistPieceViewModel
+                     {
+                         Title = aws.Title,
+                         NumberInInventory = aws.NumberInInventory,
+                         Name = ar.Name,
+                         ImageURL = p.ImageURL,
+                         Category = aws.Category,
+                         Medium = aws.Medium,
+                         ArtworkId = aws.ArtworkId,
+                         Dimensions = aws.Dimensions,
+                         Location = p.Location,
+                         Cost = p.Cost,
+                         Price = p.Price,
+                         NumberMade = aws.NumberMade,
+                         NumberSold = aws.NumberSold,
+                     });
+
+            // q is assigned type IQueryable<'a> (anonymous)
+            //var qq = q.AsEnumerable().Select(xx => new ArtworkArtistPieceViewModel  // use this syntax when retrieving > 1 item
+            //{
+            //    Title = xx.Title,
+            //    NumberInInventory = xx.NumberInInventory,
+            //    Name = xx.Name,
+            //    ImageURL = xx.ImageURL,
+            //    Category = xx.Category,
+            //    Medium = xx.Medium,
+            //    ArtworkId = xx.ArtworkId,
+            //    Dimensions = xx.Dimensions,
+            //    Location = xx.Location,
+            //    Price = xx.Price
+            //}).ToList();
+
+                q = q.Where(s => s.NumberInInventory > 0);
+                return View(q);
         }
 
         // GET: Artworks/Create
