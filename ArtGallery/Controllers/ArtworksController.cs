@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ArtGallery.Models;
+using System.Globalization;
 
 namespace ArtGallery.Controllers
 {
@@ -15,7 +16,7 @@ namespace ArtGallery.Controllers
         private ArtworkDbContext db = new ArtworkDbContext();
 
         // GET: Artworks
-        public ActionResult Index(string artistString, string mediumString, string categoryString)
+        public ActionResult Index(string artistString, string mediumString, string categoryString, string priceString)
         {
 
             var ArtistQry = from a in db.Artists
@@ -45,6 +46,18 @@ namespace ArtGallery.Controllers
             var CategoryList = new List<string>();
             CategoryList.AddRange(CategoryQry.Distinct());
             ViewData["categoryString"] = new SelectList(CategoryList);
+
+
+
+            var PriceList = new List<string>();
+            PriceList.Add("0 - $100");
+            PriceList.Add("$101 - $250");
+            PriceList.Add("$251 - $500");
+            PriceList.Add("$501 - $1000");
+            PriceList.Add("> $1000");
+            ViewData["priceString"] = new SelectList(PriceList);
+
+
 
 
             var q = (from aws in db.Artworkz
@@ -93,6 +106,86 @@ namespace ArtGallery.Controllers
             {
                 q = q.Where(x => x.Category == categoryString);
             }
+
+            switch (priceString)
+            {
+                case "0 - $100":
+                    var z = new List<ArtworkArtistPieceViewModel>();
+                    foreach (ArtworkArtistPieceViewModel piece in q)
+                    {
+                        if (int.Parse(piece.Price, NumberStyles.Currency) < 101)
+                        {
+                            z.Add(piece);
+                        }
+                    }
+                    q = z.AsQueryable();
+                    break;
+                case "$101 - $250":
+                    //var zz = new List<ArtworkArtistPieceViewModel>();
+                    //foreach (ArtworkArtistPieceViewModel piece in q)
+                    //{
+                    //    if (int.Parse(piece.Price, NumberStyles.Currency) > 100 && int.Parse(piece.Price, NumberStyles.Currency) < 251)
+                    //    {
+                    //        zz.Add(piece);
+                    //    }
+                    //}
+                    //q = zz.AsQueryable();
+                    q = q.Where(x => Convert.ToInt32(x.Price) > 100 && Convert.ToInt32(x.Price) < 250);
+                    break;
+                case "$251 - $500":
+                    var zzz = new List<ArtworkArtistPieceViewModel>();
+                    foreach (ArtworkArtistPieceViewModel piece in q)
+                    {
+                        if (int.Parse(piece.Price, NumberStyles.Currency) > 250 && int.Parse(piece.Price, NumberStyles.Currency) < 500)
+                        {
+                            zzz.Add(piece);
+                        }
+                    }
+                    q = zzz.AsQueryable();
+                    break;
+                case "$501 - $1000":
+                    var zzzz = new List<ArtworkArtistPieceViewModel>();
+                    foreach (ArtworkArtistPieceViewModel piece in q)
+                    {
+                        if (int.Parse(piece.Price, NumberStyles.Currency) > 500 && int.Parse(piece.Price, NumberStyles.Currency) < 1000)
+                        {
+                            zzzz.Add(piece);
+                        }
+                    }
+                    q = zzzz.AsQueryable();
+                    break;
+                case "> $1000":
+                    var zzzzz = new List<ArtworkArtistPieceViewModel>();
+                    foreach (ArtworkArtistPieceViewModel piece in q)
+                    {
+                        if (int.Parse(piece.Price, NumberStyles.Currency) > 1000)
+                        {
+                            zzzzz.Add(piece);
+                        }
+                    }
+                    q = zzzzz.AsQueryable();
+                    break;
+                default:
+                    break;                     
+            }
+
+
+            //if (priceString == "0 - $100")
+            //{
+            //    q = q.Where(x => decimal.Parse(x.Price, NumberStyles.Currency) < 101);
+            //}
+            //if (priceString == "$101 - $250")
+            //{
+            //    q = q.Where(x => decimal.Parse(x.Price, NumberStyles.Currency) > 100 && decimal.Parse(x.Price, NumberStyles.Currency) < 250);
+            //}
+            //if (priceString == "$251 - $500")
+            //{
+            //    q = q.Where(x => decimal.Parse(x.Price, NumberStyles.Currency) > 250 && decimal.Parse(x.Price, NumberStyles.Currency) < 501);
+            //}
+            //if (priceString == "$251 - $500")
+            //{
+            //    q = q.Where(x => decimal.Parse(x.Price, NumberStyles.Currency) > 250 && decimal.Parse(x.Price, NumberStyles.Currency) < 501);
+            //}
 
             return View(q);  // qq is type List<ArtworkArtistPriceViewModel>
         }
