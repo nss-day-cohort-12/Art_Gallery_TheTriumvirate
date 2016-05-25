@@ -128,17 +128,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AgentsController.cs" />
     <Compile Include="Controllers\ArtworksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Agent.cs" />
+    <Compile Include="Models\AgentDbContext.cs" />
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\ArtShow.cs" />
     <Compile Include="Models\Artwork.cs" />
     <Compile Include="Models\ArtworkArtistPieceViewModel.cs" />
-    <Compile Include="Models\ArtworkDbContext.cs" />
+    <Compile Include="Models\ArtGalleryDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\InventoryDbContext.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -204,9 +206,12 @@
     <Content Include="Views\Artworks\Details.cshtml" />
     <Content Include="Views\Artworks\Edit.cshtml" />
     <Content Include="Views\Artworks\Index.cshtml" />
-    <Content Include="Views\Artworks\Index - Copy.cshtml" />
-    <Content Include="Views\Artworks\Index - Copy - Copy.cshtml" />
     <Content Include="Views\Artworks\Inventory.cshtml" />
+    <Content Include="Views\Agents\Create.cshtml" />
+    <Content Include="Views\Agents\Delete.cshtml" />
+    <Content Include="Views\Agents\Details.cshtml" />
+    <Content Include="Views\Agents\Edit.cshtml" />
+    <Content Include="Views\Agents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

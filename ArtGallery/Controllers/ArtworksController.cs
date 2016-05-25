@@ -12,9 +12,9 @@ namespace ArtGallery.Controllers
 {
     public class ArtworksController : Controller
     {
-        private ArtworkDbContext db = new ArtworkDbContext();
+        private ArtGalleryDbContext db = new ArtGalleryDbContext();
 
-        // GET: Artworks
+        // GET: Artworks        
         public ActionResult Index(string artistString, string mediumString)
         {
 
