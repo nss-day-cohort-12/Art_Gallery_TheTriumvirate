@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ArtGallery.Models.ArtworkArtistPieceViewModel>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Hello Owner, here's what you have in inventory:</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            Made
+        </th>
+        <th>
+            Inventory
+        </th>
+        <th>
+            Sold
+        </th>
+        <th>
+            Cost
+        </th>
+        <th>
+            Price
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @if (item.NumberMade == -1)
+            {
+                @:(Open)
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.NumberMade);
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberInInventory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberSold)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ArtworkId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ArtworkId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ArtworkId })
+        </td>
+    </tr>
+}
+
+</table>
