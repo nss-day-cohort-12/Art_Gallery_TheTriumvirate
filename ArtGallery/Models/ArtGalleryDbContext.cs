@@ -6,12 +6,12 @@ using System.Data.Entity;
 
 namespace ArtGallery.Models
 {
-    public class ArtworkDbContext : DbContext
+    public class ArtGalleryDbContext : DbContext
     {
         public DbSet<Artwork> Artworkz { get; set; }
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Piece> Pieces { get; set; }
-        
+        public DbSet<Agent> Agents { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -26,6 +26,10 @@ namespace ArtGallery.Models
             modelBuilder.Entity<Piece>()
                 .ToTable("Piece")
                 .HasKey(p => p.PieceId);
+
+            modelBuilder.Entity<Agent>()
+                .ToTable("Agent")
+                .HasKey(g => g.AgentId);
         }
     }
 }

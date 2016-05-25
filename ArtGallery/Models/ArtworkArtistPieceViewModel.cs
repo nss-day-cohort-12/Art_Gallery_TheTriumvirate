@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -27,6 +28,12 @@ namespace ArtGallery.Models
 
         public string Location { get; set; }
 
+        public string Cost { get; set; }
+
         public string Price { get; set; }
+
+        public short NumberMade { get; set; }
+
+        public short NumberSold { get; set; }
     }
 }
