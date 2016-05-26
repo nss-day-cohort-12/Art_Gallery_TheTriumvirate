@@ -18,13 +18,16 @@ namespace ArtGallery.Controllers
         // GET: Artworks
         public ActionResult Index(string artistString, string mediumString, string categoryString, string priceString)
         {
-
+            //Pulls all the artist names from the Artist table
             var ArtistQry = from a in db.Artists
                            orderby a.Name
                            select a.Name;
 
+            //Creates a list of names to populate a select element
             var ArtistList = new List<string>();
+            //Adds a collection to the list, adding each unique string only once
             ArtistList.AddRange(ArtistQry.Distinct());
+            //Binds the variable string to the elect list?
             ViewData["artistString"] = new SelectList(ArtistList);
 
             var MediumQry = from a in db.Artworkz
@@ -75,21 +78,7 @@ namespace ArtGallery.Controllers
                          Price = p.Price
                      });
 
-            // q is assigned type IQueryable<'a> (anonymous)
-            //var qq = q.AsEnumerable().Select(xx => new ArtworkArtistPieceViewModel  // use this syntax when retrieving > 1 item
-            //{
-            //    Title = xx.Title,
-            //    NumberInInventory = xx.NumberInInventory,
-            //    Name = xx.Name,
-            //    ImageURL = xx.ImageURL,
-            //    Category = xx.Category,
-            //    Medium = xx.Medium,
-            //    ArtworkId = xx.ArtworkId,
-            //    Dimensions = xx.Dimensions,
-            //    Location = xx.Location,
-            //    Price = xx.Price
-            //}).ToList();
-
+            //If one of the bound parameters receives a value from the drop down menus, the value of q will be changed/filtered
             if (!string.IsNullOrEmpty(artistString))
             {
                 q = q.Where(s => s.Name.Contains(artistString));
@@ -104,7 +93,7 @@ namespace ArtGallery.Controllers
                 q = q.Where(x => x.Category == categoryString);
             }
 
-<<<<<<< HEAD
+            //Same function as the if statements above, the switch just seemed more appropriate for multiple conditions on one variable
             switch (priceString)
             {
                 case "0 - $100":
@@ -119,16 +108,15 @@ namespace ArtGallery.Controllers
                     q = z.AsQueryable();
                     break;
                 case "$101 - $250":
-                    //var zz = new List<ArtworkArtistPieceViewModel>();
-                    //foreach (ArtworkArtistPieceViewModel piece in q)
-                    //{
-                    //    if (int.Parse(piece.Price, NumberStyles.Currency) > 100 && int.Parse(piece.Price, NumberStyles.Currency) < 251)
-                    //    {
-                    //        zz.Add(piece);
-                    //    }
-                    //}
-                    //q = zz.AsQueryable();
-                    q = q.Where(x => Convert.ToInt32(x.Price) > 100 && Convert.ToInt32(x.Price) < 250);
+                    var zz = new List<ArtworkArtistPieceViewModel>();
+                    foreach (ArtworkArtistPieceViewModel piece in q)
+                    {
+                        if (int.Parse(piece.Price, NumberStyles.Currency) > 100 && int.Parse(piece.Price, NumberStyles.Currency) < 251)
+                        {
+                            zz.Add(piece);
+                        }
+                    }
+                    q = zz.AsQueryable();
                     break;
                 case "$251 - $500":
                     var zzz = new List<ArtworkArtistPieceViewModel>();
@@ -166,24 +154,6 @@ namespace ArtGallery.Controllers
                 default:
                     break;                     
             }
-
-
-            //if (priceString == "0 - $100")
-            //{
-            //    q = q.Where(x => decimal.Parse(x.Price, NumberStyles.Currency) < 101);
-            //}
-            //if (priceString == "$101 - $250")
-            //{
-            //    q = q.Where(x => decimal.Parse(x.Price, NumberStyles.Currency) > 100 && decimal.Parse(x.Price, NumberStyles.Currency) < 250);
-            //}
-            //if (priceString == "$251 - $500")
-            //{
-            //    q = q.Where(x => decimal.Parse(x.Price, NumberStyles.Currency) > 250 && decimal.Parse(x.Price, NumberStyles.Currency) < 501);
-            //}
-            //if (priceString == "$251 - $500")
-            //{
-            //    q = q.Where(x => decimal.Parse(x.Price, NumberStyles.Currency) > 250 && decimal.Parse(x.Price, NumberStyles.Currency) < 501);
-            //}
 
 
             return View(q);  // q is type List<ArtworkArtistPriceViewModel>
