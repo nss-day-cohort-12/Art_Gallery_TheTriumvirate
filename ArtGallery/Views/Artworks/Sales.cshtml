@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ArtGallery.Models.PieceViewModel>
+
+@{
+    ViewBag.Title = "Sales and Profits";
+}
+
+<h2>Sales and Profits</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PieceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArtworkId)
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Artist
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoldFor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Profit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditionNumber)
+        </th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PieceId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtworkId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtistName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoldFor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EditionNumber)
+            </td>
+        </tr>
+    }
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            @Model.Sum(i => i.Profit)
+        </td>
+    </tr>
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

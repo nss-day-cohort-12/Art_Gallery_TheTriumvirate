@@ -76,7 +76,7 @@ namespace ArtGallery.Controllers
                          Dimensions = aws.Dimensions,
                          Location = p.Location,
                          Price = p.Price
-                     });
+                     }).Distinct();
 
             //If one of the bound parameters receives a value from the drop down menus, the value of q will be changed/filtered
             if (!string.IsNullOrEmpty(artistString))
@@ -217,25 +217,49 @@ namespace ArtGallery.Controllers
                          Price = p.Price,
                          NumberMade = aws.NumberMade,
                          NumberSold = aws.NumberSold,
-                     });
-
-            // q is assigned type IQueryable<'a> (anonymous)
-            //var qq = q.AsEnumerable().Select(xx => new ArtworkArtistPieceViewModel  // use this syntax when retrieving > 1 item
-            //{
-            //    Title = xx.Title,
-            //    NumberInInventory = xx.NumberInInventory,
-            //    Name = xx.Name,
-            //    ImageURL = xx.ImageURL,
-            //    Category = xx.Category,
-            //    Medium = xx.Medium,
-            //    ArtworkId = xx.ArtworkId,
-            //    Dimensions = xx.Dimensions,
-            //    Location = xx.Location,
-            //    Price = xx.Price
-            //}).ToList();
+                     }).Distinct();
 
                 q = q.Where(s => s.NumberInInventory > 0);
                 return View(q);
+        }
+
+        public ActionResult Sales()
+        {
+            var q = (from pcs in db.Pieces
+                     join aw in db.Artworkz on pcs.ArtworkId equals aw.ArtworkId
+                     join ar in db.Artists on aw.ArtistId equals ar.ArtistId
+                     where pcs.SoldFor != null
+                     select new
+                     {
+                         PieceId = pcs.PieceId,
+                         ArtworkId = pcs.ArtworkId,
+                         Cost = pcs.Cost,
+                         Price = pcs.Price,
+                         SoldFor = pcs.SoldFor,
+                         EditionNumber = pcs.EditionNumber,
+                         Title = aw.Title,
+                         ArtistName = ar.Name
+                     });
+
+           // q is assigned type IQueryable< 'a> (anonymous)
+            var qq = q.AsEnumerable().Select(xx => new PieceViewModel  // use this syntax when retrieving > 1 item
+            {
+                PieceId = xx.PieceId,
+                ArtworkId = xx.ArtworkId,
+                Cost = xx.Cost,
+                Price = xx.Price,
+                SoldFor = xx.SoldFor,
+                EditionNumber = xx.EditionNumber,
+                Title = xx.Title,
+                ArtistName = xx.ArtistName
+            }).ToList();
+
+            for (int i = 0; i < qq.Count(); i++)
+            {
+                qq[i].Profit = Convert.ToDecimal(qq[i].SoldFor) - Convert.ToDecimal(qq[i].Cost);
+            }
+
+            return View(qq);
         }
 
         // GET: Artworks/Create
