@@ -16,7 +16,7 @@ namespace ArtGallery.Controllers
         private ArtGalleryDbContext db = new ArtGalleryDbContext();
 
         // GET: Artworks
-        public ActionResult Index(string artistString, string mediumString, string categoryString, string priceString)
+        public ActionResult Gallery(string artistString, string mediumString, string categoryString, string priceString)
         {
             //Pulls all the artist names from the Artist table
             var ArtistQry = from a in db.Artists
@@ -184,7 +184,7 @@ namespace ArtGallery.Controllers
                          Dimensions = aws.Dimensions,
                          Location = p.Location,
                          Price = p.Price
-                     });
+                     }).Distinct();
 
             // ** LINQ always returns a sequence, so you have to retrieve the item out of it. **
             // There are four LINQ methods to retrieve a single item out of a sequence:
@@ -219,7 +219,7 @@ namespace ArtGallery.Controllers
                          NumberSold = aws.NumberSold,
                      }).Distinct();
 
-                q = q.Where(s => s.NumberInInventory > 0);
+                //q = q.Where(s => s.NumberInInventory > 0);
                 return View(q);
         }
 
