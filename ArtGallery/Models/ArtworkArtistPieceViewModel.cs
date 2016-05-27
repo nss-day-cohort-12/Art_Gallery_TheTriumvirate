@@ -35,5 +35,7 @@ namespace ArtGallery.Models
         public short NumberMade { get; set; }
 
         public short NumberSold { get; set; }
+
+        public short PieceId { get; set; }
     }
 }

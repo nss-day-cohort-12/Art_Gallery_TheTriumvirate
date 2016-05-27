@@ -4,11 +4,8 @@
     ViewBag.Title = "View";
 }
 
-<h2>Hello Owner, here's what you have in inventory:</h2>
+<h2>Items in Inventory</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -79,3 +76,7 @@
 }
 
 </table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -8,7 +8,8 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
-    @Html.ActionLink("Owner: View Inventory", "Inventory")
+    @Html.ActionLink("View Inventory", "Inventory")
+    @Html.ActionLink("View Sales","Sales")
 </p>
 
 <form asp-controller="Artists" asp-action="Index">
@@ -61,7 +62,7 @@
 
         <td>
             <a>
-                @Html.DisplayFor(modelItem => item.ImageURL)
+                <img src=@Html.DisplayFor(modelItem => item.ImageURL) height="45">
             </a>
         </td>
         <td>

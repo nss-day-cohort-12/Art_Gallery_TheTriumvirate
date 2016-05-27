@@ -128,23 +128,23 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AgentsController.cs" />
     <Compile Include="Controllers\ArtworksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Agent.cs" />
-    <Compile Include="Models\AgentDbContext.cs" />
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\ArtShow.cs" />
     <Compile Include="Models\Artwork.cs" />
+    <Compile Include="Models\PieceViewModel.cs" />
     <Compile Include="Models\ArtworkArtistPieceViewModel.cs" />
     <Compile Include="Models\ArtGalleryDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\InventoryDbContext.cs" />
     <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\Omnibus.cs" />
     <Compile Include="Models\Piece.cs" />
+    <Compile Include="Models\Piece2.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -212,6 +212,7 @@
     <Content Include="Views\Agents\Details.cshtml" />
     <Content Include="Views\Agents\Edit.cshtml" />
     <Content Include="Views\Agents\Index.cshtml" />
+    <Content Include="Views\Artworks\Sales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
