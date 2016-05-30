@@ -301,24 +301,8 @@ namespace ArtGallery.Controllers
                 Category = aapvm.Category
             };
 
-            if (ModelState.IsValid)
-            {
-                var q = (from aws in db.Artworkz
-                         join ar in db.Artists on aws.ArtistId equals ar.ArtistId
-                         join p in db.Pieces on aws.ArtworkId equals p.ArtworkId
-                         where aws.NumberInInventory > 0
-                         select new 
-                         {
-                             ArtistId = ar.ArtistId,
-                             Name = ar.Name
-                         });
-                
-               var x = q.Where(s => s.Name.Contains(artistString2)).FirstOrDefault();
-
-                artwork.ArtistId = x.ArtistId;
-                db.Artworkz.Add(artwork);
-                db.SaveChanges();
-            }
+            db.Artworkz.Add(newArtwork);
+            db.SaveChanges();
 
             // parse EditionsAcquired string and create one new row in Piece table for each edition acquired
             // start by creating list of Edition Numbers
