@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ArtGallery.Models;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace ArtGallery.Controllers
 {
@@ -273,16 +274,79 @@ namespace ArtGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ArtworkId,ArtistId,Title,YearOriginalCreated,Medium,Dimensions,NumberMade,NumberInInventory,NumberSold")] Artwork artwork)
+        public ActionResult Create([Bind(Include = "ArtworkId,ArtistId,Title,YearOriginalCreated,Medium,Category,Dimensions,NumberMade,NumberInInventory,NumberSold,EditionsAcquired,ImageURL,Location,Cost,Price")] ArtworkArtistPieceViewModel aapvm)
         {
+
+            Artwork newArtwork = new Artwork
+            {
+                ArtworkId = aapvm.ArtworkId,
+                ArtistId = aapvm.ArtistId,
+                Title = aapvm.Title,
+                YearOriginalCreated = aapvm.YearOriginalCreated,
+                Medium = aapvm.Medium,
+                Dimensions = aapvm.Dimensions,
+                NumberMade = aapvm.NumberMade,
+                NumberInInventory = aapvm.NumberInInventory,
+                NumberSold = aapvm.NumberSold,
+                Category = aapvm.Category
+            };
+
             if (ModelState.IsValid)
             {
-                db.Artworkz.Add(artwork);
+                db.Artworkz.Add(newArtwork);
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
 
-            return View(artwork);
+            // parse EditionsAcquired string and create one new row in Piece table for each edition acquired
+            // start by creating list of Edition Numbers
+            string[] ea = aapvm.EditionsAcquired.Split(',');
+            List<int> editions = new List<int>();  // initialize blank list to contain editions
+
+            foreach (string ee in ea)
+            {
+                Regex rgx = new Regex(@"\x22");
+                string e = rgx.Replace(ee, "");
+
+                // does e represent a range?
+                if (e.Contains('-'))
+                {
+                    string[] range = e.Split('-');
+                    for (int m = Convert.ToInt16(range[0]); m <= Convert.ToInt16(range[1]); m++)
+                    {
+                        editions.Add(m);
+                    }
+                }
+                else // e is individual edition, not a range
+                {
+                    editions.Add(Convert.ToInt16(e));
+                }
+            }
+
+            // create new row in Piece for each edition
+            int editionsLogged = 0;
+            foreach (int ed in editions)
+            {
+                Piece newPiece = new Piece
+                {
+                    ArtworkId = db.Artworkz.Max(a => a.ArtworkId),
+                    DateCreated = aapvm.YearOriginalCreated.ToString(),
+                    Cost = aapvm.Cost,
+                    Price = aapvm.Price,
+                    Location = aapvm.Location,
+                    ImageURL = aapvm.ImageURL
+                };
+
+                newPiece.EditionNumber = Convert.ToInt16(ed);
+
+                newPiece.SoldFor = ++editionsLogged <= aapvm.NumberSold ?
+                                       newPiece.Price : null;
+
+                db.Pieces.Add(newPiece);
+                db.Entry(newPiece).State = EntityState.Added; // do we need this? why?
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Inventory");
         }
 
         // GET: Artworks/Edit/5
@@ -311,7 +375,7 @@ namespace ArtGallery.Controllers
             {
                 db.Entry(artwork).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Inventory");
             }
             return View(artwork);
         }
@@ -339,7 +403,7 @@ namespace ArtGallery.Controllers
             Artwork artwork = db.Artworkz.Find(id);
             db.Artworkz.Remove(artwork);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Inventory");
         }
 
         protected override void Dispose(bool disposing)

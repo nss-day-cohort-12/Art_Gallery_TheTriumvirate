@@ -6,6 +6,10 @@
 
 <h2>Items in Inventory</h2>
 
+<div>
+    @Html.ActionLink("Create New Entry","Create")
+</div>
+
 <table class="table">
     <tr>
         <th>
@@ -62,10 +66,10 @@
             @Html.DisplayFor(modelItem => item.NumberSold)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Cost)
+            $@Html.DisplayFor(modelItem => item.Cost)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            $@Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ArtworkId }) |

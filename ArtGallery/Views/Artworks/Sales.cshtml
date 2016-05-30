@@ -52,16 +52,16 @@
                 @Html.DisplayFor(modelItem => item.ArtistName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cost)
+                $@Html.DisplayFor(modelItem => item.Cost)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                $@Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SoldFor)
+                $@Html.DisplayFor(modelItem => item.SoldFor)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Profit)
+                $@Html.DisplayFor(modelItem => item.Profit)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EditionNumber)
@@ -78,11 +78,11 @@
         <td></td>
         <td></td>
         <td>
-            @Model.Sum(i => i.Profit)
+            <p style="color:red">$@Model.Sum(i => i.Profit)</p>
         </td>
     </tr>
 </table>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Inventory")
 </div>
