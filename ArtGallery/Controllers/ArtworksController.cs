@@ -266,6 +266,16 @@ namespace ArtGallery.Controllers
         // GET: Artworks/Create
         public ActionResult Create()
         {
+            var ArtistQry = from a in db.Artists
+                            orderby a.Name
+                            select a.Name;
+
+            //Creates a list of names to populate a select element
+            var ArtistList = new List<string>();
+            //Adds a collection to the list, adding each unique string only once
+            ArtistList.AddRange(ArtistQry.Distinct());
+            //Binds the variable string to the elect list?
+            ViewData["artistString2"] = new SelectList(ArtistList);
             return View();
         }
 
@@ -293,7 +303,20 @@ namespace ArtGallery.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Artworkz.Add(newArtwork);
+                var q = (from aws in db.Artworkz
+                         join ar in db.Artists on aws.ArtistId equals ar.ArtistId
+                         join p in db.Pieces on aws.ArtworkId equals p.ArtworkId
+                         where aws.NumberInInventory > 0
+                         select new 
+                         {
+                             ArtistId = ar.ArtistId,
+                             Name = ar.Name
+                         });
+                
+               var x = q.Where(s => s.Name.Contains(artistString2)).FirstOrDefault();
+
+                artwork.ArtistId = x.ArtistId;
+                db.Artworkz.Add(artwork);
                 db.SaveChanges();
             }
 
