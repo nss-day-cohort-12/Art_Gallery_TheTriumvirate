@@ -7,9 +7,9 @@
 <h2>Would you like a cup of espresso</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-    @Html.ActionLink("View Inventory", "Inventory")
-    @Html.ActionLink("View Sales", "Sales")
+    @Html.ActionLink("Create New", "Create",null, new { style = "margin-right:50px" })
+    @Html.ActionLink("View Inventory", "Inventory", null, new { style = "margin-right:50px" })
+    @Html.ActionLink("View Sales", "Sales", null, new { style = "margin-right:50px" })
 </p>
 
 <form asp-controller="Artists" asp-action="Index">
@@ -27,16 +27,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Artist
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Medium)
+            @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NumberInInventory)
+            Available
+        </th>
+        <th>
+            Location
         </th>
         <th>
             Image
@@ -54,14 +57,16 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Medium)
+                $@Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NumberInInventory)
             </td>
-
             <td>
-                <a>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                <a href=@Html.DisplayFor(modelItem => item.ImageURL)>
                     <img src=@Html.DisplayFor(modelItem => item.ImageURL) height="45">
                 </a>
             </td>

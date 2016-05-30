@@ -344,3 +344,14 @@ INSERT INTO [dbo].[Piece] ([PieceId], [ArtworkId], [ImageURL], [DateCreated], [C
 INSERT INTO [dbo].[Piece] ([PieceId], [ArtworkId], [ImageURL], [DateCreated], [Cost], [Price], [SoldFor], [Location], [EditionNumber]) VALUES (127, 1048, N'http://www.ugallery.com/webdata/Product/43677/Images/Large_Main.jpg', N'2016', N'$298.62 ', N'$474 ', NULL, N'South', 1)
 SET IDENTITY_INSERT [dbo].[Piece] OFF
 
+SET IDENTITY_INSERT [dbo].[Agent] ON
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (50, N'Penguin', NULL, NULL, NULL, NULL, 1)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (51, N'The Joker', NULL, NULL, NULL, NULL, 1)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (52, N'Batroc', NULL, NULL, NULL, NULL, 1)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (53, N'Golden Eagle', NULL, NULL, NULL, NULL, 0)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (54, N'Sinestro', NULL, NULL, NULL, NULL, 1)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (55, N'Sandman', NULL, NULL, NULL, NULL, 1)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (56, N'Bizarro', NULL, NULL, NULL, NULL, 1)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (151, N'Hodor', NULL, NULL, NULL, NULL, 0)
+INSERT INTO [dbo].[Agent] ([AgentId], [FirstName], [LastName], [Location], [Address], [Phone], [Active]) VALUES (251, N'Vlad', N'Dracula', NULL, N'16 Ceaucescu, Transylvania 43Y80', NULL, 1)
+SET IDENTITY_INSERT [dbo].[Agent] OFF
