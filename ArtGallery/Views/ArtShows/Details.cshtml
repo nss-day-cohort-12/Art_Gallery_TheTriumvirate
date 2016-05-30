@@ -1,0 +1,50 @@
+﻿@model ArtGallery.Models.ArtShow
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ArtShow</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ArtistsRepresented)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArtistsRepresented)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Agents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Agents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Overhead)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Overhead)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ArtShowId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

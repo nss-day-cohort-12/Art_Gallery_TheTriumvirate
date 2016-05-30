@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ArtGallery.Models.ArtShowVM>
+
+@{
+    ViewBag.Title = "Events!";
+}
+
+<h2>Events!</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ArtistsRepresented)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Agents)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Overhead)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArtistsRepresented)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Agents)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Overhead)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ArtShowId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ArtShowId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ArtShowId })
+        </td>
+    </tr>
+}
+
+</table>
