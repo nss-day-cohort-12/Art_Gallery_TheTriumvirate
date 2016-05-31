@@ -8,6 +8,8 @@ namespace ArtGallery.Models
 {
     public class ArtworkArtistPieceViewModel
     {
+        public short ArtistId { get; set; }
+
         public string Title { get; set; }
 
         public short NumberInInventory { get; set; }
@@ -37,5 +39,7 @@ namespace ArtGallery.Models
         public short NumberSold { get; set; }
 
         public short PieceId { get; set; }
+
+        public string EditionsAcquired { get; set; }
     }
 }
