@@ -311,8 +311,8 @@ namespace ArtGallery.Controllers
 
             foreach (string ee in ea)
             {
-                Regex rgx = new Regex(@"\x22");
-                string e = rgx.Replace(ee, "");
+                Regex rgx = new Regex(@"\x22");  // expression matches quotation marks
+                string e = rgx.Replace(ee, "");  // delete quotation marks
 
                 // does e represent a range?
                 if (e.Contains('-'))

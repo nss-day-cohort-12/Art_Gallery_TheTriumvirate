@@ -129,7 +129,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AgentsController.cs" />
+    <Compile Include="Controllers\ArtShowsController.cs" />
     <Compile Include="Controllers\ArtworksController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -137,6 +139,7 @@
     <Compile Include="Models\Agent.cs" />
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\ArtShow.cs" />
+    <Compile Include="Models\ArtShowVM.cs" />
     <Compile Include="Models\Artwork.cs" />
     <Compile Include="Models\PieceViewModel.cs" />
     <Compile Include="Models\ArtworkArtistPieceViewModel.cs" />
