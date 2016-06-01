@@ -13,7 +13,9 @@ namespace ArtGallery.Models
         public DbSet<Piece> Pieces { get; set; }
         public DbSet<Piece2> Pieces2 { get; set; }
         public DbSet<Agent> Agents { get; set; }
-        public DbSet<Omnibus> Omnibus_T { get; set; }
+        // public DbSet<Omnibus> Omnibus_T { get; set; }
+        public DbSet<ArtShow> ArtShows { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,8 +39,17 @@ namespace ArtGallery.Models
                 .ToTable("Agent")
                 .HasKey(g => g.AgentId);
 
-            modelBuilder.Entity<Omnibus>()
-                .ToTable("omnibus_t");
+            //modelBuilder.Entity<Omnibus>()
+            //    .ToTable("omnibus_t");
+
+            modelBuilder.Entity<ArtShow>()
+                .ToTable("ArtShow")
+                .HasKey(ashow => ashow.ArtShowId);
+
+            modelBuilder.Entity<Customer>()
+                .ToTable("Customer")
+                .HasKey(c => c.CustomerId);
+
         }
     }
 }
