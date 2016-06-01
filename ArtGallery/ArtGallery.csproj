@@ -218,6 +218,16 @@
     <Content Include="Views\Agents\Index.cshtml" />
     <Content Include="Views\Artworks\Sales.cshtml" />
     <Content Include="Views\Artworks\Gallery.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\ArtShows\Create.cshtml" />
+    <Content Include="Views\ArtShows\Delete.cshtml" />
+    <Content Include="Views\ArtShows\Details.cshtml" />
+    <Content Include="Views\ArtShows\Edit.cshtml" />
+    <Content Include="Views\ArtShows\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

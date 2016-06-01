@@ -43,10 +43,12 @@ namespace ArtGallery.Models
             //    .ToTable("omnibus_t");
 
             modelBuilder.Entity<ArtShow>()
-                .ToTable("ArtShow");
+                .ToTable("ArtShow")
+                .HasKey(ashow => ashow.ArtShowId);
 
             modelBuilder.Entity<Customer>()
-                .ToTable("Customer");
+                .ToTable("Customer")
+                .HasKey(c => c.CustomerId);
 
         }
     }
